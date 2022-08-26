@@ -1,10 +1,12 @@
 package sia.tacocloud.repositories;
 
+import org.springframework.data.repository.CrudRepository;
 import sia.tacocloud.domain.Order;
 
-public interface OrderRepository {
+import java.util.List;
 
-    Order save(Order order);
-
+public interface OrderRepository extends CrudRepository<Order, Long> {
+    List<Order> findByDeliveryZip(String deliveryZip);
 }
+
 
