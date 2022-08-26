@@ -15,6 +15,7 @@ public class TacoCloudApplication {
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(TacoCloudApplication.class, args);
+        System.out.println();
 //        String[] str = ctx.getBeanDefinitionNames();
 //        for(String st: str){
 //            System.out.println(st);
