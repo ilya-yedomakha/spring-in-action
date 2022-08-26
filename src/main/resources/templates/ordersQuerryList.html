@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TacoCloud</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+</head>
+
+<body>
+<h1>List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>deliveryName</th>
+        <th>deliveryStreet</th>
+        <th>deliveryCity</th>
+        <th>deliveryState</th>
+        <th>deliveryZip</th>
+    </tr>
+    <tr th:each="order : ${orderList}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.deliveryName}"></td>
+        <td th:text="${order.deliveryStreet}"></td>
+        <td th:text="${order.deliveryCity}"></td>
+        <td th:text="${order.deliveryState}"></td>
+        <td th:text="${order.deliveryZip}"></td>
+    </tr>
+</table>
+<a href="/">Back to homepage</a>
+</body>
+</html>
