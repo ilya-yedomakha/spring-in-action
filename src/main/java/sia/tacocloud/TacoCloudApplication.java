@@ -12,7 +12,7 @@ import sia.tacocloud.repositories.IngredientRepository;
 import java.util.Arrays;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"sia.tacocloud.*"})
+//@ComponentScan(basePackages = {"sia.tacocloud.*"})
 public class TacoCloudApplication {
 
     public static void main(String[] args) {

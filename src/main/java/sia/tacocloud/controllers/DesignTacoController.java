@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import sia.tacocloud.domain.Ingredient;
 import sia.tacocloud.domain.Order;
 import sia.tacocloud.domain.Taco;
+import sia.tacocloud.domain.User;
 import sia.tacocloud.repositories.IngredientRepository;
 import sia.tacocloud.repositories.TacoRepository;
+import sia.tacocloud.repositories.UserRepository;
 
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,16 +29,19 @@ public class DesignTacoController {
 
     private final IngredientRepository ingredientRepo;
 
-    private TacoRepository designRepo;
+    private final TacoRepository designRepo;
+
+    private final UserRepository userRepo;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo) {
+    public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo, UserRepository userRepo) {
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
+        this.userRepo = userRepo;
     }
 
     @ModelAttribute
-    public void addIngredientsToModel(Model model) {
+    public void addIngredientsToModel(Model model, Principal principal) {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepo.findAll().forEach(ingredients::add);
         Ingredient.Type[] types = Ingredient.Type.values();
@@ -43,6 +49,10 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));
         }
+
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
     }
 
     @ModelAttribute(name = "order")
@@ -73,8 +83,8 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors,
-                                @ModelAttribute Order order) {
+    public String processDesign(@Valid @ModelAttribute("taco")Taco design, Errors errors,
+                                @ModelAttribute("order") Order order) {
         if (errors.hasErrors()) {
             return "design";
         }
