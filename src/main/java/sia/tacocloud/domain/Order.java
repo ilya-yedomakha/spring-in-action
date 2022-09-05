@@ -19,6 +19,9 @@ import java.util.List;
 @Table(name="Taco_Order")
 public class Order implements Serializable {
 
+    @ManyToOne
+    private User user;
+
     private static final long serialVersionUID = 1L;
 
     @Id

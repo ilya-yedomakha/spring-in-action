@@ -39,3 +39,15 @@ alter table Taco_Order_Tacos
     add foreign key (tacoOrder) references Taco_Order(id);
 alter table Taco_Order_Tacos
     add foreign key (taco) references Taco(id);
+
+
+-- create table if not exists Users (
+--     username varchar(25) not null,
+--     password BINARY(80) not null
+-- --     enabled boolean not null
+-- );
+--
+-- create table if not exists UserAuthorities (
+--     username varchar(25) not null,
+--     authority varchar(25) not null
+--     );

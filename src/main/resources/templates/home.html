@@ -9,6 +9,9 @@
 <body>
 <h1>Welcome to...</h1>
 <img th:src="@{/images/TacoCloud.png}" width="200" height="100"/>
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+  <input type="submit" value="Logout"/>
+</form>
 <a th:href="@{/design}" id="another">Design your taco</a><br/>
 <a th:href = "@{/orderslist}" >Show the list of Orders with ZIP-code "123"</a><br/>
 </body>

@@ -43,3 +43,8 @@ insert into Ingredient (id, name, type)
 insert into Ingredient (id, name, type)
     values ('SRCR', 'Sour Cream', 'SAUCE');
 
+-- insert into Users (username, password)
+-- values ('username','9e7e3a73a40871d4b489adb746c31ace280d28206dded9665bac40eabfe6ffdc32a8c5c416b5878f');
+--
+-- insert into UserAuthorities (username, authority)
+-- values ('username', 'USER');
